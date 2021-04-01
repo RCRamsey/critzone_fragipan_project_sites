@@ -36,6 +36,7 @@
             padding: 10px 15px;
             /* Add styles to match Leaflet UI elements */
             background: rgba(256, 256, 256, .7);
+            fill-opacity: .7;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -76,8 +77,8 @@
         }
 
         a {
-            color: #005daa;
-            text-decoration: none;
+            color: #2c394f;
+            text-decoration:underline;
         }
 
         a:hover {
@@ -270,9 +271,9 @@
                 var countyLayer = L.geoJson(data, {
                     style: function (feature) {
                         return {
-                            color:'gray',
+                            color:'#a4b7d4',
                             weight: .7,
-                            fillOpacity: 0.2,
+                            fillOpacity: 0.4,
                             interactive: false
                         };
                     }
