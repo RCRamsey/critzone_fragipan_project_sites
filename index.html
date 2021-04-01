@@ -239,13 +239,17 @@
                 }
             }).addTo(map);
         });
-     
+
+        //z-index is for placement of text or buttons, however,
+        //bringToFront should in theory work for layers 
+        //console.log gives error "siteLayer.bringToFront is not a function"
+        siteLayer.bringToFront();
 
         //console confirm siteLayer object creation
         //console.log(siteLayer);
 
         //have jQuery wait until data loaded to add state/county outline layers
-        var state =$.when(siteLayer).done(function () {
+        var state = $.when(siteLayer).done(function () {
             $.getJSON("data/us_states_500k.geojson", function (data) {
                 var stateLayer = L.geoJson(data, {
                     style: function (feature) {
@@ -262,7 +266,7 @@
         });
 
         //have jQuery wait until data loaded to add state/county outline layers
-       var county = $.when(siteLayer).done(function () {
+        var county = $.when(siteLayer).done(function () {
             $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
                 var countyLayer = L.geoJson(data, {
                     style: function (feature) {
