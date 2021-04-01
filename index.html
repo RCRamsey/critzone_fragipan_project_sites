@@ -236,11 +236,12 @@
                             radius: 10,
                              });
                         });
-                    //mouseout to close popup
-                    // layer.on("mouseout", function (e) {
-                    //     this.closePopup();
-                    //     e.target.resetStyle(layer);
-                    // });
+                    //mouseout to close popup and reset layer
+                    //console logs error that resetStyle() is not a function?
+                    layer.on("mouseout", function (e) {
+                        this.closePopup();
+                        e.target.resetStyle();
+                    });
                 }
             }).addTo(map);
         });
@@ -282,7 +283,7 @@
                             interactive: false
                         };
                     },
-                
+                    //
                     onEachFeature: function (feature, layer) {
                         var p = layer.feature.properties
                         var popup = `<h2> ${p["NAME"]} County</h2>`
