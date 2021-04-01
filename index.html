@@ -225,7 +225,7 @@
                 onEachFeature: function (feature, layer) {
                     var p = layer.feature.properties
                     //console.log(p)
-                    var popup = `<h2> ${p["County"]} County</h2> <br> ${p["soil_serie"]} Soil Series<br> Pedon #
+                    var popup = `<h2> ${p["County"]} County</h2> <br> ${p["soil_series"]} Soil Series<br> Pedon #
                     ${p["updated_so"]}`
                     layer.bindPopup(popup),
                         //mouseover to open popup
