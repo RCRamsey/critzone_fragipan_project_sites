@@ -229,13 +229,18 @@
                     }
                     layer.bindPopup(popup),
                         //mouseover to open popup
-                        layer.on("mouseover", function () {
+                        layer.on("mouseover", function (e) {
                             this.openPopup();
+                             e.target.setStyle({
+                            fillColor: 'pink',
+                            radius: 10,
+                             });
                         });
                     //mouseout to close popup
-                    layer.on("mouseout", function () {
-                        this.closePopup();
-                    });
+                    // layer.on("mouseout", function (e) {
+                    //     this.closePopup();
+                    //     e.target.resetStyle(layer);
+                    // });
                 }
             }).addTo(map);
         });
@@ -276,6 +281,15 @@
                             fillOpacity: 0.4,
                             interactive: false
                         };
+                    },
+                
+                    onEachFeature: function (feature, layer) {
+                        var p = layer.feature.properties
+                        var popup = `<h2> ${p["NAME"]} County</h2>`
+                        layer.bindPopup(popup),
+                        layer.on("click", function (e) {
+                            this.openPopup();
+                        })
                     }
                 });
                 countyLayer.addTo(map)
