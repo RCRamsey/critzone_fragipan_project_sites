@@ -206,22 +206,22 @@
                 },
                 filter: function (
                     features
-                    ){
-                        if (features.geometry.type == "Point") {
-                            return features;
-                        }
-                    },
-                    style: function (features) {
-                        return {
-                            color: '#8da0cb',
-                            fillColor: '#8da0cb',
-                            weight: 1,
-                            stroke: 0,
-                            fillOpactiy: 1,
-                            radius: 5
-                        }
-                    },
-                    //add popup for each circle marker
+                ) {
+                    if (features.geometry.type == "Point") {
+                        return features;
+                    }
+                },
+                style: function (features) {
+                    return {
+                        color: '#8da0cb',
+                        fillColor: '#8da0cb',
+                        weight: 1,
+                        stroke: 0,
+                        fillOpactiy: 1,
+                        radius: 5
+                    }
+                },
+                //add popup for each circle marker
                 onEachFeature: function (feature, layer) {
                     var p = layer.feature.properties
                     //console.log(p)
@@ -259,6 +259,22 @@
             });
         });
 
+        //have jQuery wait until data loaded to add state/county outline layers
+        $.when(siteLayer).done(function () {
+            $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
+                var stateLayer = L.geoJson(data, {
+                    style: function (feature) {
+                        return {
+                            color: 'gray',
+                            weight: 1.0,
+                            fillOpacity: 0,
+                            interactive: false
+                        };
+                    }
+                });
+                stateLayer.addTo(map)
+            });
+        });
     </script>
 
 </body>
