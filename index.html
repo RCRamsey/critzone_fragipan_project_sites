@@ -21,7 +21,7 @@
             padding: 0;
             font-family: 'Quicksand', sans-serif;
             font-size: 100%;
-            color: #3d3d3d;
+            color: #1b385a;
         }
 
         h1 {
@@ -35,7 +35,7 @@
             letter-spacing: .04em;
             padding: 10px 15px;
             /* Add styles to match Leaflet UI elements */
-            background: rgba(256, 256, 256, .3);
+            background: rgba(256, 256, 256, .7);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -63,7 +63,7 @@
             width: 280px;
             padding: 0 15px;
             /* Add styles to match Leaflet UI elements */
-            background: rgba(256, 256, 256, .3);
+            background: rgba(256, 256, 256, .7);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -127,15 +127,14 @@
 
 <body>
 
-    <h1>Fragipan Project!</h1>
+    <h1>What's in the pan?</h1>
 
     <div id='map'></div>
 
     <section id="about">
         <h2>Site Locations</h2>
-        <p>The Critical Zone Pedology Laboratory at the University of Kentucky began its Fragipan Project in 2019.
-            Samples were collected from soils across western Kentucky counties demonstrating fragic properties. Learn
-            more about the projects individual sites by clicking the markers above.</p>
+        <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project in 2019.
+        <p>Samples were collected from soils across western Kentucky counties demonstrating fragic properties. Hover over  markers to learn more about the individual sites!</p>
         <p>Map authored by RC Ramsey<br>See other projects at: <a href="https://github.com/RCRamsey">RC Ramsey
                 Github</a></p>
     </section>
@@ -182,15 +181,13 @@
         L.control.locate(locate_options).addTo(map);
 
         // Get basemap URL from Leaflet Providers
-        var basemap_url = 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}'
+        var basemap_url = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
 
         // Get basemap attributes from Leaflet Providers
         var basemap_attributes = {
-            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href = "http://creativecommons.org/licenses/by/3.0" > CC BY 3.0 < /a> &mdash; Map data &copy; <a href = "https://www.openstreetmap.org/copyright" > OpenStreetMap </a> contributors',
-            subdomains: 'abcd',
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
             minZoom: 1,
-            maxZoom: 16,
-            ext: 'jpg'
+            maxZoom: 20
         };
         // request map tiles 
         var tiles = L.tileLayer(basemap_url, basemap_attributes);
@@ -225,8 +222,10 @@
                 onEachFeature: function (feature, layer) {
                     var p = layer.feature.properties
                     //console.log(p)
-                    var popup = `<h2> ${p["County"]} County</h2> <br> ${p["soil_series"]} Soil Series<br> Pedon #
-                    ${p["updated_so"]}`
+                    var popup = `<h2> ${p["County"]} County</h2>${p["soil_series"]} Soil Series<br>` 
+                    if(p["updated_so"] != null) {
+                        popup += `Pedon # ${p["updated_so"]}`
+                    }
                     layer.bindPopup(popup),
                         //mouseover to open popup
                         layer.on("mouseover", function () {
@@ -243,7 +242,7 @@
         //z-index is for placement of text or buttons, however,
         //bringToFront should in theory work for layers 
         //console.log gives error "siteLayer.bringToFront is not a function"
-        siteLayer.bringToFront();
+        //siteLayer.bringToFront();
 
         //console confirm siteLayer object creation
         //console.log(siteLayer);
@@ -254,7 +253,7 @@
                 var stateLayer = L.geoJson(data, {
                     style: function (feature) {
                         return {
-                            color: 'orange',
+                            color: '#1b385a',
                             weight: 1.0,
                             fillOpacity: 0,
                             interactive: false
@@ -271,9 +270,9 @@
                 var countyLayer = L.geoJson(data, {
                     style: function (feature) {
                         return {
-                            color: 'gray',
-                            weight: 1.0,
-                            fillOpacity: 0,
+                            color:'gray',
+                            weight: .7,
+                            fillOpacity: 0.2,
                             interactive: false
                         };
                     }
@@ -285,7 +284,7 @@
         // //add legend to turn layers on and off
         // var sourcesLayers = {
         //     "<b style='color:black; text-shadow: 0px 0px 1px #333;'>Sites</b>": siteLayer,
-        //     "<b style='color:grey; text-shadow: 0px 0px 1px #333;'>County</b>": county,
+        //     "<b style='color:navy blue; text-shadow: 0px 0px 1px #333;'>County</b>": county,
         //     "<b style='color:orange; text-shadow: 0px 0px 1px #333;'>State</b>": state,
         // }
 
