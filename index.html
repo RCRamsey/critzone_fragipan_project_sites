@@ -196,36 +196,37 @@
         var tiles = L.tileLayer(basemap_url, basemap_attributes);
         map.addLayer(tiles);
 
-        // //create leaflet geoJson using geoJSON site file
-        // var siteLocals = L.geoJson(siteData, {
-
-        //     filter: function (feature) {
-        //         if (feature.geometry.type == "Point") {
-        //             return feature;
-        //         }
-        //     },
-        //     //create popup for each point
-        //     onEachFeature: function (feature, layer) {
-        //         layer.bindPopup(feature.properties.County);
-        //     }
-        // }).addTo(map);
-
-        //add fragipan site data layer
+        //add fragipan site data layer using ajax
         var siteLayer = $.getJSON("data/hs_fragipan_project_4326.geojson", function (data) {
-            //declare dataLayer assigning geoJson layer in call back function
+            //declare dataLayer assigning geoJson (dataLayer) layer for later reference 
             var dataLayer = L.geoJson(data, {
-                style: function (feature) {
-                    return {
-                        color: '#444',
-                        weight: 1,
-                        fillOpacity: 1,
-                        fillColor: '#1f78b4'
-                    };
+                //convert point data in layer to circle markers on leaflet
+                pointToLayer: function (features, latlng) {
+                    return L.circleMarker(latlng);
                 },
+                filter: function (
+                    features
+                    ){
+                        if (features.geometry.type == "Point") {
+                            return features;
+                        }
+                    },
+                    style: function (features) {
+                        return {
+                            color: '#8da0cb',
+                            fillColor: '#8da0cb',
+                            weight: 1,
+                            stroke: 0,
+                            fillOpactiy: 1,
+                            radius: 5
+                        }
+                    },
+                    //add popup for each circle marker
                 onEachFeature: function (feature, layer) {
                     var p = layer.feature.properties
                     //console.log(p)
-                    var popup = `<h2> ${p["County"]} County</h2> <br> ${p["soil_serie"]} Soil Series<br> ${p["updated_so"]} Pedon #`
+                    var popup = `<h2> ${p["County"]} County</h2> <br> ${p["soil_serie"]} Soil Series<br> Pedon #
+                    ${p["updated_so"]}`
                     layer.bindPopup(popup),
                         //mouseover to open popup
                         layer.on("mouseover", function () {
@@ -237,68 +238,27 @@
                     });
                 }
             }).addTo(map);
-            //call geoJson layer to add to map
-            drawMap(dataLayer)
+        });
+        //console confirm siteLayer object creation
+        console.log(siteLayer);
+
+        //have jQuery wait until data loaded to add state/county outline layers
+        $.when(siteLayer).done(function () {
+            $.getJSON("data/us_states_500k.geojson", function (data) {
+                var stateLayer = L.geoJson(data, {
+                    style: function (feature) {
+                        return {
+                            color: 'orange',
+                            weight: 1.0,
+                            fillOpacity: 0,
+                            interactive: false
+                        };
+                    }
+                });
+                stateLayer.addTo(map)
+            });
         });
 
-        console.log(siteLayer);
-        
-        // //have jQuery wait until data loaded to add state/county outline layers
-        // $when(siteLayer).done(function () {
-        //     $getJSON("data/ky_state_wgs84.geojson", function (data) {
-        //         var stateLayer = L.geoJson(data, {
-        //             style: function (feature) {
-        //                 return {
-        //                     color: 'black',
-        //                     weight: 1.0,
-        //                     fillOpacity: 0,
-        //                     interactive: false
-        //                 };
-        //             }
-        //         });
-        //         stateLayer.addTo(map)
-        //     });
-        // });
-
-        ///////////////////FUNCTIONS//////////////////////////
-        //drawmap function used in site layer development
-        function drawMap(dataLayer) {
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // var message = '<h2>University of Kentucky!</h2>Department of Geography';
-
-        // L.marker(map.getCenter())
-        //     .bindPopup(message)
-        //     .addTo(map)
     </script>
 
 </body>
