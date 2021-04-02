@@ -7,7 +7,7 @@ Fragipans are a soil feature that restricts the downward movement of water and p
 
 ![illustration of fragipan](graphics/fragipan_illustration.jpg)
 ![demarcated prism crack zones of pedons](graphics/demarcated_prism_crack.jpg)
-*Images created by Hannah Sommerville*
+*Images created by Hannah Sommerville Critical Zone Pedology Lab Member*
 
 Fragipans are common in aeolian soils of southeastern and midwestern US, especially western Kentucky because of its aeolian parent material (loess from 3 river systems in the area). Unfortunately these soil features can lead to plants with stunted roots that severely decrease crop yields. They also can result in a perched water table causing engineering problems preventing development of areas.
 
