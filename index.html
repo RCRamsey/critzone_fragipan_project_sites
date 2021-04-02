@@ -371,14 +371,14 @@
                         };
                     },
                     //add UI of county name popup
-                    onEachFeature: function (feature, layer) {
-                        var p = layer.feature.properties
-                        var popup = `<h2> ${p["NAME"]} County</h2>`
-                        layer.bindPopup(popup),
-                            layer.on("click", function (e) {
-                                this.openPopup();
-                            })
-                    }
+                    // onEachFeature: function (feature, layer) {
+                    //     var p = layer.feature.properties
+                    //     var popup = `<h2> ${p["NAME"]} County</h2>`
+                    //     layer.bindPopup(popup),
+                    //         layer.on("click", function (e) {
+                    //             this.openPopup();
+                    //         })
+                    // }
                 });
                 dataLayer.addTo(map)
             });
