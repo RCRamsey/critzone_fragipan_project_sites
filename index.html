@@ -71,6 +71,23 @@
             z-index: 800;
         }
 
+        #info {
+            position: absolute;
+            margin-top: 0;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            letter-spacing: .04em;
+            color: #3d3d3d;
+            padding: 5px 10px;
+            top: 130px;
+            right: 10px;
+            z-index: 1000;
+            border-radius: 4px;
+            border: 1px solid #aaa;
+            background: rgba(256, 256, 256, .3);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
         p {
             font-size: .9em;
             line-height: 1.5em;
@@ -78,7 +95,7 @@
 
         a {
             color: #2c394f;
-            text-decoration:underline;
+            text-decoration: underline;
         }
 
         a:hover {
@@ -123,21 +140,41 @@
                 display: none;
             }
         }
+
+        #info {
+            position: absolute;
+            margin-top: 0;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            letter-spacing: .04em;
+            color: #3d3d3d;
+            padding: 5px 10px;
+            top: 130px;
+            right: 10px;
+            z-index: 1000;
+            /*can't place button over map without z index default z index is 0, 1000 is higher than all other panes*/
+            border-radius: 4px;
+            border: 1px solid #aaa;
+            background: rgba(256, 256, 256, .3);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>What's in the pan?</h1>
+    <h1 id='title'>What's in the pan?</h1>
 
     <div id='map'></div>
+    <button id='info'>Info</button>
 
     <section id="about">
         <h2>Site Locations</h2>
         <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project in 2019.
-        <p>Samples were collected from soils across western Kentucky counties demonstrating fragic properties. Hover over  markers to learn more about the individual sites!</p>
-        <p>Map authored by RC Ramsey<br>See other projects at: <a href="https://github.com/RCRamsey">RC Ramsey
-                Github</a></p>
+            <p>Samples were collected from soils across western Kentucky counties demonstrating fragic properties. Hover
+                over markers to learn more about the individual sites!</p>
+            <p>Map authored by RC Ramsey<br>See other projects at: <a href="https://github.com/RCRamsey">RC Ramsey
+                    Github</a></p>
     </section>
 
     <!--Load scripts-->
@@ -219,45 +256,47 @@
                         radius: 5,
                     }
                 },
-                //add popup for each circle marker
+                //add popup for each circle marker including county of site, soil series, pedon # if available and picture
                 onEachFeature: function (feature, layer) {
                     var p = layer.feature.properties
                     //console.log(p)
-                    var popup = `<h2> ${p["County"]} County</h2>${p["soil_series"]} Soil Series<br>` 
-                    if(p["updated_so"] != null) {
-                        popup += `Pedon # ${p["updated_so"]}`
+                    var popup = `<h2> ${p["County"]} County</h2>${p["soil_series"]} Soil Series<br>`
+                    if (p["updated_so"] != null) {
+                        popup += `NRCS Pedon # ${p["updated_so"]}`
                     }
-                    if(p["County"] == "Breckinridge (New Site)"){
-                        popup += '<img src = "graphics/20190723_NB_OSL.jpg" height="275px" width="180px" />'
-                    } else if (p["County"] == "Caldwell"){
-                    popup += '<img src="graphics/20191204_CA_9.jpg" height="180px" width="275px" />'
-                    }
-                    else if (p["County"] == "Christian"){
-                    popup += '<img src="graphics/20190821_CH_OSL.jpg" height="180px" width="275px" />'
-                    }
-                    else if (p["County"] == "Crittenden"){
-                    popup += '<img src="graphics/20190820_CR_OSL107cm.jpg" height="275px" width="220px" />'
-                    }
-                    else if (p["County"] == "Grayson"){
-                    popup += '<img src="graphics/20190724_GR_OSL.jpg" height="275px" width="180px" />'
-                    }
-                    else if (p["County"] == "McLean"){
-                    popup += '<img src="graphics/20190819_McL_Cosmo.jpg" height="275px" width="200px" />'
-                    }
-                    else if (p["County"] == "Trigg"){
-                    popup += '<img src="graphics/20190822_TR_0cm.jpg" height="180px" width="275px" />'
-                    }
-                    else if (p["County"] == "Breckinridge (Old Site)"){
-                    popup += '<img src="graphics/20190723_OB_OSL.jpg" height="180px" width="275px" />'
+                    if (p["County"] == "Breckinridge (New Site)") {
+                        popup +=
+                            '<img src = "graphics/20190723_NB_OSL.jpg" height="275px" width="180px" />'
+                    } else if (p["County"] == "Caldwell") {
+                        popup +=
+                            '<img src="graphics/20191204_CA_9.jpg" height="180px" width="275px" />'
+                    } else if (p["County"] == "Christian") {
+                        popup +=
+                            '<img src="graphics/20190821_CH_OSL.jpg" height="180px" width="275px" />'
+                    } else if (p["County"] == "Crittenden") {
+                        popup +=
+                            '<img src="graphics/20190820_CR_OSL107cm.jpg" height="275px" width="220px" />'
+                    } else if (p["County"] == "Grayson") {
+                        popup +=
+                            '<img src="graphics/20190724_GR_OSL.jpg" height="275px" width="180px" />'
+                    } else if (p["County"] == "McLean") {
+                        popup +=
+                            '<img src="graphics/20190819_McL_Cosmo.jpg" height="275px" width="200px" />'
+                    } else if (p["County"] == "Trigg") {
+                        popup +=
+                            '<img src="graphics/20190822_TR_0cm.jpg" height="180px" width="275px" />'
+                    } else if (p["County"] == "Breckinridge (Old Site)") {
+                        popup +=
+                            '<img src="graphics/20190723_OB_OSL.jpg" height="180px" width="275px" />'
                     }
                     layer.bindPopup(popup),
                         //mouseover to open popup
                         layer.on("mouseover", function (e) {
                             this.openPopup();
-                             e.target.setStyle({
-                            fillColor: 'pink',
-                            radius: 10,
-                             });
+                            e.target.setStyle({
+                                fillColor: 'pink',
+                                radius: 10,
+                            });
                         });
                     //mouseout to close popup and reset layer
                     //console logs error that resetStyle() is not a function?
@@ -300,7 +339,7 @@
                 var countyLayer = L.geoJson(data, {
                     style: function (feature) {
                         return {
-                            color:'#a4b7d4',
+                            color: '#a4b7d4',
                             weight: .7,
                             fillOpacity: 0.4,
                             interactive: false
@@ -311,15 +350,33 @@
                         var p = layer.feature.properties
                         var popup = `<h2> ${p["NAME"]} County</h2>`
                         layer.bindPopup(popup),
-                        layer.on("click", function (e) {
-                            this.openPopup();
-                        })
+                            layer.on("click", function (e) {
+                                this.openPopup();
+                            })
                     }
                 });
                 countyLayer.addTo(map)
             });
         });
 
+        var button = document.querySelector('#info')
+        var title = document.querySelector('#title')
+        var about = document.querySelector('#about')
+        var clicked = false
+        button.addEventListener('click', function () {
+            clicked = !clicked
+            if (clicked) {
+                title.style.visibility = 'hidden'
+                about.style.visibility = 'hidden'
+                button.style.backgroundColor = '#aaa'
+                button.style.color = '#fff'
+            } else {
+                title.style.visibility = 'inherit'
+                about.style.visibility = 'inherit'
+                button.style.background = 'rgba(256, 256, 256, .3)'
+                button.style.color = '#3d3d3d'
+            }
+        })
         // //add legend to turn layers on and off
         // var sourcesLayers = {
         //     "<b style='color:black; text-shadow: 0px 0px 1px #333;'>Sites</b>": siteLayer,
