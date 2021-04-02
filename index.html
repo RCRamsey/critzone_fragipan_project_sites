@@ -108,10 +108,11 @@
             font-size: 1.1em;
         }
 
-        /*popup width attempt to elliminate extra space👻*/
+        /*popup width attempt to manipulate/limit excess space. The goal is to get the popup to display content (text/image) with as little as excess padding as possible👻*/
         .custom .leaflet-popup-content-wrapper {
             border-radius: 0;
             border: 3px solid rgba(0,0,0,0.4);
+            color: #aaa;
         }
         /*.leaflet-popup-content-wrapper.leaflet-popup-content{
         } */
@@ -184,11 +185,13 @@
 
     <section id="about">
         <h2>Site Locations</h2>
-        <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project in 2019.
-            <p>Samples were collected from soils across western Kentucky counties demonstrating fragic properties. Hover
+        <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project to characterize W. Kentucky's Fragipans in 2019.
+            <p>Samples were collected from soils across KY counties demonstrating fragic properties. Hover
                 over markers to learn more about the individual sites!</p>
-            <p>Map authored by RC Ramsey<br>See other projects at: <a href="https://github.com/RCRamsey">RC Ramsey
-                    Github</a></p>
+            <p>Map data obtained from <a href="http://www.cbshepard.com/">Critical Zone Pedology Lab</a>, U.S.
+            Census Bureau's <a href="https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html">Cartographic Boundary Files (State)</a> & <a
+                href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">TIGER/Line Shapefiles (county)</a></p>
+            <p>Map authored by RC Ramsey<br>See other projects at: <a href="https://github.com/RCRamsey">RC Ramsey Github</a></p>
     </section>
 
     <!--Load scripts-->
@@ -353,19 +356,19 @@
             });
         });
 
-        //have jQuery wait until data loaded to add state/county outline layers
-        var county = $.when(siteLayer).done(function () {
-            $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
-                var countyLayer = L.geoJson(data, {
+        //load county layer
+        var countyLayer =  $.when(siteLayer).done(function(){
+        $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
+                var dataLayer = L.geoJson(data, {
                     style: function (feature) {
                         return {
                             color: '#a4b7d4',
                             weight: .7,
                             fillOpacity: 0.4,
-                            interactive: false
+                            interactive: true
                         };
                     },
-                    //
+                    //add UI of county name popup
                     onEachFeature: function (feature, layer) {
                         var p = layer.feature.properties
                         var popup = `<h2> ${p["NAME"]} County</h2>`
@@ -375,10 +378,11 @@
                             })
                     }
                 });
-                countyLayer.addTo(map)
+                dataLayer.addTo(map)
             });
         });
 
+        //create button to maximize map space and reduce about/info/title
         var button = document.querySelector('#info')
         var title = document.querySelector('#title')
         var about = document.querySelector('#about')
