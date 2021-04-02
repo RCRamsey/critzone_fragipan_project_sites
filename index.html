@@ -227,6 +227,9 @@
                     if(p["updated_so"] != null) {
                         popup += `Pedon # ${p["updated_so"]}`
                     }
+                    if(p["County"] == "Caldwell"){
+                        popup += '<img src = "graphics/caldwell_pit.jpg" height="150px" width="150px" />'
+                    }
                     layer.bindPopup(popup),
                         //mouseover to open popup
                         layer.on("mouseover", function (e) {
