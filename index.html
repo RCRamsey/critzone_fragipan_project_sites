@@ -241,8 +241,8 @@
         // Get basemap attributes from Leaflet Providers
         var basemap_attributes = {
             attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-            minZoom: 1,
-            maxZoom: 20
+            minZoom: 5,
+            maxZoom: 10
         };
         // request map tiles 
         var tiles = L.tileLayer(basemap_url, basemap_attributes);
