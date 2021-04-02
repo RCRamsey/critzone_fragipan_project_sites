@@ -357,6 +357,7 @@
         });
 
         //load county layer
+        //is there a way to click on county layer to produce county name popup while still maintaining the mouseover aspect of the sites data layer? 
         var countyLayer =  $.when(siteLayer).done(function(){
         $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
                 var dataLayer = L.geoJson(data, {
