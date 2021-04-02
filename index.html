@@ -108,6 +108,20 @@
             font-size: 1.1em;
         }
 
+        /*popup width attempt to elliminate extra space👻*/
+        .custom .leaflet-popup-content-wrapper {
+            border-radius: 0;
+            border: 3px solid rgba(0,0,0,0.4);
+        }
+        /*.leaflet-popup-content-wrapper.leaflet-popup-content{
+        } */
+        /* .leaflet-popup-tip {
+            border-right: 15px solid transparent;
+        }  */
+        .leaflet-interactive {
+            padding: 0 0 0 0;
+        }
+
         /* 
 		When browser is 900px high or less
 		make the font a little smaller.
@@ -289,7 +303,13 @@
                         popup +=
                             '<img src="graphics/20190723_OB_OSL.jpg" height="180px" width="275px" />'
                     }
-                    layer.bindPopup(popup),
+                    //popup width attempt to elliminate extra space👻
+                    layer.bindPopup(popup), 
+                    // {
+                    //    'maxWidth': '200',
+                    //    'width': '200',
+                        
+                    // }
                         //mouseover to open popup
                         layer.on("mouseover", function (e) {
                             this.openPopup();
