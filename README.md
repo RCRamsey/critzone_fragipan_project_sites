@@ -8,12 +8,12 @@ Fragipans are a soil feature that restricts the downward movement of water and p
 ![illustration of fragipan](graphics/fragipan_illustration.jpg)
 ![demarcated prism crack zones of pedons](graphics/demarcated_prism_crack.jpg)
 
-Fragipans are common in aeolian soils of southeastern and midwestern US, especially western Kentucky because of its aeolian parent material (loess from 3 river systems in the area). Unfortunately these soil features can lead to plants with stunted roots that severely decreases crop yields. They also can result in a perched water table causing engineering problems preventing development of areas.
+Fragipans are common in aeolian soils of southeastern and midwestern US, especially western Kentucky because of its aeolian parent material (loess from 3 river systems in the area). Unfortunately these soil features can lead to plants with stunted roots that severely decrease crop yields. They also can result in a perched water table causing engineering problems preventing development of areas.
 
- Despite their existence being documented since late 1800s-early 1900s little is still known of what exactly causes fragipan formation nor how to break it down. The Critical Zone Pedology Lab is investigating a the properties of 8 pedons across 7 Kentucky counties containing fragipans in an effort to better understand:
+ Despite their existence being documented since late 1800s-early 1900s little is known of what exactly causes fragipan formation nor how to alter it. The Critical Zone Pedology Lab is investigating the properties of 8 pedons across 7 Kentucky counties containing fragipans in an effort to better understand:
  - characteristics of varying aged pedons
- - chemical, mineralogical and physical characteristics
- - discrete subunits of "crack" vs "prism" and their formation
+ - chemical, mineralogical and physical characteristics of fragipans
+ - fragipan formation of discrete subunits of "crack" vs "prism"
  - the role of silica in bulk density and brittleness of the fragipan
 
 
