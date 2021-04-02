@@ -36,7 +36,7 @@
             padding: 10px 15px;
             /* Add styles to match Leaflet UI elements */
             background: rgba(256, 256, 256, .7);
-            fill-opacity: .7;
+            fill-opacity: .8;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -359,30 +359,30 @@
         //load county layer
         //is there a way to click on county layer to produce county name popup while still maintaining the mouseover aspect of the sites data layer? 
         //leaving the interactive option as false so mouseover popups for data sites continues operating
-        // var countyLayer =  $.when(siteLayer).done(function(){
-        // $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
-        //         var dataLayer = L.geoJson(data, {
-        //             style: function (feature) {
-        //                 return {
-        //                     color: '#a4b7d4',
-        //                     weight: .7,
-        //                     fillOpacity: 0.4,
-        //                     interactive: false
-        //                 };
-        //             },
-        //             add UI of county name popup
-        //             onEachFeature: function (feature, layer) {
-        //                 var p = layer.feature.properties
-        //                 var popup = `<h2> ${p["NAME"]} County</h2>`
-        //                 layer.bindPopup(popup),
-        //                     layer.on("click", function (e) {
-        //                         this.openPopup();
-        //                     })
-        //             }
-        //         });
-        //         dataLayer.addTo(map)
-        //     });
-        // });
+        var countyLayer =  $.when(siteLayer).done(function(){
+        $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
+                var dataLayer = L.geoJson(data, {
+                    style: function (feature) {
+                        return {
+                            color: '#a4b7d4',
+                            weight: .7,
+                            fillOpacity: 0.4,
+                            interactive: false
+                        };
+                    },
+                    //add UI of county name popup
+                    onEachFeature: function (feature, layer) {
+                        var p = layer.feature.properties
+                        var popup = `<h2> ${p["NAME"]} County</h2>`
+                        layer.bindPopup(popup),
+                            layer.on("click", function (e) {
+                                this.openPopup();
+                            })
+                    }
+                });
+                dataLayer.addTo(map)
+            });
+        });
 
         //create button to maximize map space and reduce about/info/title
         var button = document.querySelector('#info')
