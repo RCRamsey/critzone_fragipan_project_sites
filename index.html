@@ -108,21 +108,7 @@
         .leaflet-popup-content {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.1em;
-        }
-
-        /*popup width attempt to manipulate/limit excess space. The goal is to get the popup to display content (text/image) with as little as excess padding as possible👻*/
-        .custom .leaflet-popup-content-wrapper {
-            border-radius: 0;
-            border: 3px solid rgba(0,0,0,0.4);
-            color: #aaa;
-        }
-        /*.leaflet-popup-content-wrapper.leaflet-popup-content{
-        } */
-        /* .leaflet-popup-tip {
-            border-right: 15px solid transparent;
-        }  */
-        .leaflet-interactive {
-            padding: 0 0 0 0;
+            max-width: 225px;
         }
 
         /* 
@@ -188,8 +174,8 @@
     <section id="about">
         <h2>Site Locations</h2>
         <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project to characterize W. Kentucky's Fragipans in 2019.
-            <p>Samples were collected from soils across KY counties demonstrating fragic properties. Hover
-                over markers to learn more about the individual sites!</p>
+            <p>Soil samples were collected from pedons approximately 2 meter in depth, across Western KY counties demonstrating fragic properties. Hover
+                over markers to learn more about individual sites!</p>
             <p>Map data obtained from <a href="http://www.cbshepard.com/">Critical Zone Pedology Lab</a>, U.S.
             Census Bureau's <a href="https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html">Cartographic Boundary Files (State)</a> & <a
                 href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">TIGER/Line Shapefiles (county)</a></p>
@@ -308,13 +294,9 @@
                         popup +=
                             '<img src="graphics/breckinridge_old_profile.jpg" height="300px" width="225px" />'
                     }
-                    //popup width attempt to elliminate extra space👻
+                  
                     layer.bindPopup(popup), 
-                    // {
-                    //    'maxWidth': '200',
-                    //    'width': '200',
-                        
-                    // }
+               
                         //mouseover to open popup
                         layer.on("mouseover", function (e) {
                             this.openPopup();
@@ -405,16 +387,7 @@
                 button.style.color = '#3d3d3d'
             }
         })
-        // //add legend to turn layers on and off
-        // var sourcesLayers = {
-        //     "<b style='color:black; text-shadow: 0px 0px 1px #333;'>Sites</b>": siteLayer,
-        //     "<b style='color:navy blue; text-shadow: 0px 0px 1px #333;'>County</b>": county,
-        //     "<b style='color:orange; text-shadow: 0px 0px 1px #333;'>State</b>": state,
-        // }
 
-        // L.control.layers(null, sourcesLayers, {
-        //     collapsed: false
-        // }).addTo(map);
     </script>
 
 </body>
