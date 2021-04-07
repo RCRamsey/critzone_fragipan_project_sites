@@ -8,7 +8,7 @@
                 "County": "McLean",
                 "soil_series": "Hosmer",
                 "updated_so": "S2019KY149001",
-                "image": "../graphics/mclean_profile2.jpg",
+                "image": "graphics/mclean_profile2.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -87.317184,
                 "latitude": 37.585356
@@ -28,7 +28,7 @@
                 "County": "Crittenden",
                 "soil_series": "Hosmer",
                 "updated_so": "S2019KY055001",
-                 "image": "../graphics/crittenden_profile2.jpg",
+                 "image": "/graphics/crittenden_profile2.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -88.03613,
                 "latitude": 37.37774
@@ -48,7 +48,7 @@
                 "County": "Christian",
                 "soil_series": "Zanesville",
                 "updated_so": "S2019KY047001",
-                 "image": "../graphics/christian_profile.jpg",
+                 "image": "./graphics/christian_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -87.52138,
                 "latitude": 36.94682
@@ -88,7 +88,7 @@
                 "County": "Grayson",
                 "soil_series": "Sadler",
                 "updated_so": "S2019KY085001",
-                 "image": "..graphics/grayson_profile.jpg",
+                 "image": ".../graphics/grayson_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -86.343792,
                 "latitude": 37.462541
@@ -108,7 +108,7 @@
                 "County": "Breckinridge (New Site)",
                 "soil_series": "Sadler",
                 "updated_so": "S2019KY027001",
-                 "image": "../graphics/breckinridge_new_profile.jpg",
+                 "image": ".graphics/breckinridge_new_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -86.460905,
                 "latitude": 37.75904
@@ -128,7 +128,7 @@
                 "County": "Breckinridge (Old Site)",
                 "soil_series": "Sadler",
                 "updated_so": "S2019KY027002",
-                 "image": "../graphics/breckinridge_old_profile.jpg",
+                 "image": "..graphics/breckinridge_old_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -86.496221,
                 "latitude": 37.713634
@@ -148,7 +148,7 @@
                 "County": "Caldwell",
                 "soil_series": "Sadler/Zanesville",
                 "updated_so": null,
-                 "image": "../graphics/caldwell_profile2.jpg",
+                 "image": "...graphics/caldwell_profile2.jpg",
                 "comment": "Pedon of H. Sommerville Fragipan Project 2019-2021",
                 "longitude": -87.82505,
                 "latitude": 37.10543
