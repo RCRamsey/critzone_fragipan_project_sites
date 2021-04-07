@@ -179,7 +179,7 @@
 
     <section id="about">
         <h2>Site Locations</h2>
-        <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project in 2019. Fragipans are a soil feature that restricts downward movement of water and plant root penetration resulting in stunted plant roots and decreasing crop yields.
+        <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project in 2019. Fragipans are soil features that restrict downward movement of water and plant root penetration resulting in stunted plant roots and decreasing crop yields.
 
         <p>Soil samples were collected from sites demonstrating fragic properties in an effort to better describe the physical, chemical, and mineralogical characteristics of fragipans. Hover over markers to learn more about individual sites!</p>
         
@@ -244,7 +244,6 @@
 
         //load county layer
         //is there a way to click on county layer to produce county name popup while still maintaining the mouseover aspect of the sites data layer ?
-            //leaving the interactive option as false so mouseover popups for data sites continues operating
             var countyLayer = 
             //$.when(siteLayer).done(function () {
                 $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
@@ -301,7 +300,9 @@
                 onEachFeature: function (feature, layer) {
                     var p = layer.feature.properties
                     //console.log(p)
-                    var popup = `<h2> ${p["County"]} County</h2>${p["soil_series"]} Soil Series<br>${'<img src = p["image"]/>'}<br>`
+                    //🔥img src is not pulling correctly. console continues to report 404(not found) error. Is this because my code in the popup is incorrect? Or is my geojson "image" attribute file directory incorrect? 🔥
+                    var popup = `<h2> ${p["County"]} County</h2>${p["soil_series"]} Soil Series<br>
+                    <img src =${p["image"]}/><br>`
                     if (p["updated_so"] != null) {
                         popup += `NRCS Pedon # ${p["updated_so"]}`
                     }
