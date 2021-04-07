@@ -15,7 +15,9 @@
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
 
     <style>
         body {
@@ -108,7 +110,13 @@
         .leaflet-popup-content {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.1em;
-            max-width: 225px;
+            /*vw viewport width, 1vw = 1%*/
+            max-width: 20vw;
+        }
+
+        /*cascading style to indicate img rules within the .leaflet-popup-content*/
+        .leaflet-popup-content img {
+            width: 100%;
         }
 
         /* 
@@ -173,13 +181,18 @@
 
     <section id="about">
         <h2>Site Locations</h2>
-        <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project to characterize W. Kentucky's Fragipans in 2019.
-            <p>Soil samples were collected from pedons approximately 2 meter in depth, across Western KY counties demonstrating fragic properties. Hover
+        <p>The Critical Zone Pedology Laboratory at UKY began its Fragipan Project to characterize W. Kentucky's
+            Fragipans in 2019.
+            <p>Soil samples were collected from pedons approximately 2 meter in depth, across Western KY counties
+                demonstrating fragic properties. Hover
                 over markers to learn more about individual sites!</p>
             <p>Map data obtained from <a href="http://www.cbshepard.com/">Critical Zone Pedology Lab</a>, U.S.
-            Census Bureau's <a href="https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html">Cartographic Boundary Files (State)</a> & <a
-                href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">TIGER/Line Shapefiles (county)</a></p>
-            <p>Map authored by RC Ramsey<br>See other projects at: <a href="https://github.com/RCRamsey">RC Ramsey Github</a></p>
+                Census Bureau's <a href="https://www.census.gov/geo/maps-data/data/cbf/cbf_state.html">Cartographic
+                    Boundary Files (State)</a> & <a
+                    href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">TIGER/Line
+                    Shapefiles (county)</a></p>
+            <p>Map authored by RC Ramsey<br>See other projects at: <a href="https://github.com/RCRamsey">RC Ramsey
+                    Github</a></p>
     </section>
 
     <!--Load scripts-->
@@ -236,8 +249,38 @@
         var tiles = L.tileLayer(basemap_url, basemap_attributes);
         map.addLayer(tiles);
 
+        //load county layer
+        //is there a way to click on county layer to produce county name popup while still maintaining the mouseover aspect of the sites data layer ?
+            //leaving the interactive option as false so mouseover popups for data sites continues operating
+            var countyLayer = 
+            //$.when(siteLayer).done(function () {
+                $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
+                    var dataLayer = L.geoJson(data, {
+                        style: function (feature) {
+                            return {
+                                color: '#a4b7d4',
+                                weight: .7,
+                                fillOpacity: 0.4,
+                                interactive: false
+                            };
+                        },
+                        //add UI of county name popup
+                        onEachFeature: function (feature, layer) {
+                            var p = layer.feature.properties
+                            var popup = `<h2> ${p["NAME"]} County</h2>`
+                            layer.bindPopup(popup),
+                                layer.on("click", function (e) {
+                                    this.openPopup();
+                                })
+                        }
+                    });
+                    dataLayer.addTo(map)
+                });
+            //});
+
         //add fragipan site data layer using ajax
-        var siteLayer = $.getJSON("data/hs_fragipan_project_4326.geojson", function (data) {
+        var siteLayer = $.when(countyLayer).done(function () {
+            $.getJSON("data/hs_fragipan_project_4326.geojson", function (data) {
             //declare dataLayer assigning geoJson (dataLayer) layer for later reference 
             var dataLayer = L.geoJson(data, {
                 //convert point data in layer to circle markers on leaflet
@@ -256,8 +299,8 @@
                         color: 'black',
                         fillColor: 'black',
                         weight: 1,
-                        stroke: 0,
-                        fillOpactiy: 0.1,
+                        stroke: true,
+                        fillOpacity: 1,
                         radius: 5,
                     }
                 },
@@ -271,7 +314,7 @@
                     }
                     if (p["County"] == "Breckinridge (New Site)") {
                         popup +=
-                            '<img src = "graphics/breckinridge_new_profile.jpg" height="300px" width="225px" />'
+                            '<img src = "graphics/breckinridge_new_profile.jpg" />'
                     } else if (p["County"] == "Caldwell") {
                         popup +=
                             '<img src="graphics/caldwell_profile2.jpg" height="300px" width="225px" />'
@@ -294,9 +337,9 @@
                         popup +=
                             '<img src="graphics/breckinridge_old_profile.jpg" height="300px" width="225px" />'
                     }
-                  
-                    layer.bindPopup(popup), 
-               
+
+                    layer.bindPopup(popup),
+
                         //mouseover to open popup
                         layer.on("mouseover", function (e) {
                             this.openPopup();
@@ -308,12 +351,16 @@
                     //mouseout to close popup and reset layer
                     //console logs error that resetStyle() is not a function?
                     layer.on("mouseout", function (e) {
-                        this.closePopup();
-                        e.target.resetStyle();
+                        //this.closePopup();
+                        e.target.setStyle({
+                            fillColor: 'black',
+                            radius: 5,
+                        });
                     });
                 }
             }).addTo(map);
         });
+    });
 
         //z-index is for placement of text or buttons, however,
         //bringToFront should in theory work for layers 
@@ -322,6 +369,9 @@
 
         //console confirm siteLayer object creation
         //console.log(siteLayer);
+
+
+
 
         //have jQuery wait until data loaded to add state/county outline layers
         var state = $.when(siteLayer).done(function () {
@@ -337,34 +387,6 @@
                     }
                 });
                 stateLayer.addTo(map)
-            });
-        });
-
-        //load county layer
-        //is there a way to click on county layer to produce county name popup while still maintaining the mouseover aspect of the sites data layer? 
-        //leaving the interactive option as false so mouseover popups for data sites continues operating
-        var countyLayer =  $.when(siteLayer).done(function(){
-        $.getJSON("data/tl_2019_us_county_4326.geojson", function (data) {
-                var dataLayer = L.geoJson(data, {
-                    style: function (feature) {
-                        return {
-                            color: '#a4b7d4',
-                            weight: .7,
-                            fillOpacity: 0.4,
-                            interactive: false
-                        };
-                    },
-                    //add UI of county name popup
-                    onEachFeature: function (feature, layer) {
-                        var p = layer.feature.properties
-                        var popup = `<h2> ${p["NAME"]} County</h2>`
-                        layer.bindPopup(popup),
-                            layer.on("click", function (e) {
-                                this.openPopup();
-                            })
-                    }
-                });
-                dataLayer.addTo(map)
             });
         });
 
@@ -387,7 +409,6 @@
                 button.style.color = '#3d3d3d'
             }
         })
-
     </script>
 
 </body>
