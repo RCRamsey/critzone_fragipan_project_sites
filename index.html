@@ -13,11 +13,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
 
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
 
     <style>
         body {
@@ -217,7 +215,7 @@
         var locate_options = {
             position: 'topright',
             strings: {
-                title: "Show me where I am, yo!"
+                title: "Where am I?"
             }
         }
 
@@ -308,32 +306,6 @@
                         popup += `NRCS Pedon # ${p["updated_so"]}`
                     }
 
-                    // if (p["County"] == "Breckinridge (New Site)") {
-                    //     popup +=
-                    //         '<img src = "graphics/breckinridge_new_profile.jpg" />'
-                    // } else if (p["County"] == "Caldwell") {
-                    //     popup +=
-                    //         '<img src="graphics/caldwell_profile2.jpg" height="300px" width="225px" />'
-                    // } else if (p["County"] == "Christian") {
-                    //     popup +=
-                    //         '<img src="graphics/christian_profile.jpg" height="300px" width="225px" />'
-                    // } else if (p["County"] == "Crittenden") {
-                    //     popup +=
-                    //         '<img src="graphics/crittenden_profile2.jpg" height="300px" width="225px" />'
-                    // } else if (p["County"] == "Grayson") {
-                    //     popup +=
-                    //         '<img src="graphics/grayson_profile.jpg" height="300px" width="225px" />'
-                    // } else if (p["County"] == "McLean") {
-                    //     popup +=
-                    //         '<img src="graphics/mclean_profile2.jpg" height="300px" width="225px" />'
-                    // } else if (p["County"] == "Trigg") {
-                    //     popup +=
-                    //         '<img src="graphics/trigg_profile.jpg" height="300px" width="225px" />'
-                    // } else if (p["County"] == "Breckinridge (Old Site)") {
-                    //     popup +=
-                    //         '<img src="graphics/breckinridge_old_profile.jpg" height="300px" width="225px" />'
-                    // }
-
                     layer.bindPopup(popup),
 
                         //mouseover to open popup
@@ -357,17 +329,6 @@
             }).addTo(map);
         });
     });
-
-        //z-index is for placement of text or buttons, however,
-        //bringToFront should in theory work for layers 
-        //console.log gives error "siteLayer.bringToFront is not a function"
-        //siteLayer.bringToFront();
-
-        //console confirm siteLayer object creation
-        //console.log(siteLayer);
-
-
-
 
         //have jQuery wait until data loaded to add state/county outline layers
         var state = $.when(siteLayer).done(function () {
