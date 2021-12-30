@@ -323,7 +323,7 @@
                     //🔥img src is not pulling correctly. console continues to report 404(not found) error. Is this because my code in the popup is incorrect? Or is my geojson "image" attribute file directory incorrect? 🔥
                     var popup = `<h2> ${p["County"]} County</h2>${p["soil_series"]} <a
                         href= ${p["soil_series_description"]}> Soil Series</a><br>
-                    <img src =${p["image"]}/><br>`
+                    <img src ='graphics/${p["image"]}'/><br>`
                     if (p["updated_so"] != null) {
                         popup += `NRCS Pedon # ${p["updated_so"]}`
                     }

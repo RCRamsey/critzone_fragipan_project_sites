@@ -9,7 +9,7 @@
                 "soil_series": "Hosmer",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/H/HOSMER.html",
                 "updated_so": "S2019KY149001",
-                "image": "../graphics/mclean_profile2.jpg",
+                "image": "mclean_profile2.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -87.317184,
                 "latitude": 37.585356
@@ -30,7 +30,7 @@
                 "soil_series": "Hosmer",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/H/HOSMER.html",
                 "updated_so": "S2019KY055001",
-                 "image": "../graphics/crittenden_profile2.jpg",
+                 "image": "crittenden_profile2.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -88.03613,
                 "latitude": 37.37774
@@ -51,7 +51,7 @@
                 "soil_series": "Zanesville",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/Z/ZANESVILLE.html",
                 "updated_so": "S2019KY047001",
-                 "image": "../graphics/christian_profile.jpg",
+                 "image": "christian_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -87.52138,
                 "latitude": 36.94682
@@ -72,7 +72,7 @@
                 "soil_series": "Nicholson",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/N/NICHOLSON.html",
                 "updated_so": "S2019KY221001",
-                 "image": "../graphics/trigg_profile.jpg",
+                 "image": "trigg_profile.jpg",
                 "comment": "NRCS soil# from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -87.86036,
                 "latitude": 36.82746
@@ -93,7 +93,7 @@
                 "soil_series": "Sadler",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/S/SADLER.html",
                 "updated_so": "S2019KY085001",
-                 "image": "../graphics/grayson_profile.jpg",
+                 "image": "grayson_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -86.343792,
                 "latitude": 37.462541
@@ -114,7 +114,7 @@
                 "soil_series": "Sadler",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/S/SADLER.html",
                 "updated_so": "S2019KY027001",
-                 "image": "../graphics/breckinridge_new_profile.jpg",
+                 "image": "breckinridge_new_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -86.460905,
                 "latitude": 37.75904
@@ -135,7 +135,7 @@
                 "soil_series": "Sadler",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/S/SADLER.html",
                 "updated_so": "S2019KY027002",
-                 "image": "../graphics/breckinridge_old_profile.jpg",
+                 "image": "breckinridge_old_profile.jpg",
                 "comment": "NRCS soil # from data profiles. Pedon of H. Sommerville Fragipan Project 2019-2021 (mesonet site)",
                 "longitude": -86.496221,
                 "latitude": 37.713634
@@ -156,7 +156,7 @@
                 "soil_series": "Sadler",
                 "soil_series_description": "https://soilseries.sc.egov.usda.gov/OSD_Docs/S/SADLER.html",
                 "updated_so": null,
-                 "image": "../graphics/caldwell_profile2.jpg",
+                 "image": "caldwell_profile2.jpg",
                 "comment": "Pedon of H. Sommerville Fragipan Project 2019-2021",
                 "longitude": -87.82505,
                 "latitude": 37.10543
