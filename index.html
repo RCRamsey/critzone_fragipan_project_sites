@@ -240,14 +240,23 @@
         // add geolocation control to top right window position (Leaflet can handle multiple top-right elements)
         L.control.locate(locate_options).addTo(map);
 
-        // Get basemap URL from Leaflet Providers
-        var basemap_url = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+        // Get basemap URL from Leaflet Providers using alidade smooth
+        //var basemap_url = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
 
-        // Get basemap attributes from Leaflet Providers
+        // Get basemap attributes from Leaflet Providers using alidade smooth
+        // var basemap_attributes = {
+        //     attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+        //     minZoom: 5,
+        //     maxZoom: 10
+        // };
+
+        // Get basemap URL from Leaflet Providers using diff from alidade smooth
+        var basemap_url = 'https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png'
+
         var basemap_attributes = {
             attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
             minZoom: 5,
-            maxZoom: 10
+            maxZoom: 20
         };
         // request map tiles 
         var tiles = L.tileLayer(basemap_url, basemap_attributes);
