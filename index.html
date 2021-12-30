@@ -217,7 +217,8 @@
 
     <script>
         var options = {
-            center: [37.5999, -85.7],
+            // center: [37.5999, -85.7],
+            center: [37.65159, -86.19383],
             zoom: 7.5,
             zoomControl: false
         }
@@ -239,16 +240,6 @@
 
         // add geolocation control to top right window position (Leaflet can handle multiple top-right elements)
         L.control.locate(locate_options).addTo(map);
-
-        // Get basemap URL from Leaflet Providers using alidade smooth
-        //var basemap_url = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
-
-        // Get basemap attributes from Leaflet Providers using alidade smooth
-        // var basemap_attributes = {
-        //     attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-        //     minZoom: 5,
-        //     maxZoom: 10
-        // };
 
         // Get basemap URL from Leaflet Providers using diff from alidade smooth
         var basemap_url = 'https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png'
