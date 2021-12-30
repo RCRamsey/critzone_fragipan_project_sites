@@ -251,12 +251,12 @@
         // };
 
         // Get basemap URL from Leaflet Providers using diff from alidade smooth
-        var basemap_url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}'
+        var basemap_url = 'https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png'
 
         var basemap_attributes = {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             minZoom: 5,
-            maxZoom: 13
+            maxZoom: 19
         };
         // request map tiles 
         var tiles = L.tileLayer(basemap_url, basemap_attributes);
