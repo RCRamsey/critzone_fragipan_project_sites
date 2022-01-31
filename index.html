@@ -217,7 +217,6 @@
 
     <script>
         var options = {
-            // center: [37.5999, -85.7],
             center: [37.65159, -86.19383],
             zoom: 7.5,
             zoomControl: false
@@ -242,10 +241,10 @@
         L.control.locate(locate_options).addTo(map);
 
         // Get basemap URL from Leaflet Providers using diff from alidade smooth
-        var basemap_url = 'https://tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png'
+        var basemap_url = 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
 
         var basemap_attributes = {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
             minZoom: 5,
             maxZoom: 19
         };
